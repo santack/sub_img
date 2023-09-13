@@ -1,5 +1,10 @@
 <style>
 /* styles.css */
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-gap: 10px; /* Add spacing between inputs */
+}
 .modal {
     display: none;
     position: fixed;
@@ -89,13 +94,23 @@
                                                     <td><a href="<?= base_url() ?>report/edit/<?= $row['report_id'] ?>"><?= $row['customer_package_id'] ?></a></td>
                                                     <td>
                                                         <form id="image-upload-form" action="<?= base_url()?>report/add_image" method="POST" enctype="multipart/form-data">
-                                                            <input type="hidden" name="report_id" value="<?= $row['report_id']?>">
-                                                            <input type="file" name="files[]" id="image-input" accept="image/*" multiple>
-                                                            <input type="submit" value="Upload Images">
+                                                            <div class="input-container">
+                                                                <input type="hidden" name="report_id" value="<?= $row['report_id']?>">
+                                                                <input type="file" name="files[]"style="width: 100%" id="image-input" accept="image/*" multiple>
+                                                                <input type="submit" style="width:80%;" class="" value="Upload Images">
+                                                            </div>
+                                                            <!-- <input type="hidden" name="report_id" value="<?= $row['report_id']?>">
+                                                            <input type="file" name="files[]" class="form-control" id="image-input" accept="image/*" multiple>
+                                                            <input type="submit" class="btn" style="text-align:right" value="Upload Images"> -->
                                                         </form>
-                                                        <?php foreach ($row['images'] as $image){?>
-                                                            <img id="img-<?= $image["report_image_id"]?>" data-id="<?= $image["report_image_id"]?>" class="img" style="width: 200px; height: 100px; margin-top:50px;"src="<?= $image['image_true'] ?>" alt="">
-                                                            <button class="btn btn-danger delete-button" data-id="<?= $image["report_image_id"] ?>" data-path="report_image"><i class="fa fa-trash"></i> Delete</button>
+                                                        <?php foreach ($row['images'] as $ikey => $image){?>
+                                                            <div style="padding-top: 10px;">
+                                                                <a href="" class="img" id="<?= $image['image_true'] ?>">Image <?= $ikey +1 ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <!-- <img id="img-<?= $image["report_image_id"]?>" data-id="<?= $image["report_image_id"]?>" class="img" style="width: 200px; height: 100px; margin-top:50px;"src="<?= $image['image_true'] ?>" alt=""> -->
+                                                                <button class="btn btn-danger delete-button" data-id="<?= $image["report_image_id"] ?>" data-path="report_image"><i class="fa fa-trash"></i> Delete</button>
+                                                            </div>
+                                                           
+                                                            <br>
                                                         <?php } ?>
                                                     </td>
                                                   
@@ -133,8 +148,9 @@ $(document).ready(function() {
     //         width: '1000px'
     //     });
     // });
-    $(".img").click(function () {
-        var imgSrc = $(this).attr("src");
+    $(".img").click(function (e) {
+        e.preventDefault();
+        var imgSrc = $(this).attr("id");
         $("#modalImage").attr("src", imgSrc);
         $("#imageModal").css("display", "block");
     });
