@@ -77,15 +77,25 @@
                     </a>
                 </li> -->
                 <li class="c-sidebar-nav-title">Admin/Users</li>
-                <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link <?php if ($this->router->fetch_class() == 'admin') {
-                                                        echo 'c-active';
-                                                    } ?>" href="<?= base_url() ?>admin">
-                        <i class="feather icon-user c-sidebar-nav-icon"></i>
-                        Admin
-                    </a>
-                </li>
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link <?php if ($this->router->fetch_class() == 'admin') {
+                                                            echo 'c-active';
+                                                        } ?>" href="<?= base_url() ?>admin">
+                            <i class="feather icon-user c-sidebar-nav-icon"></i>
+                            Admin
+                        </a>
+                    </li>
+                    <?php if ($this->session->userdata("login_data")['role_id'] == 1) { ?>
+                        <li class="c-sidebar-nav-item">
+                            <a class="c-sidebar-nav-link <?php if ($this->router->fetch_class() == 'dealer') {
+                                                                echo 'c-active';
+                                                            } ?>" href="<?= base_url() ?>dealer">
+                                <i class="feather icon-user c-sidebar-nav-icon"></i>
+                                Dealer
+                            </a>
+                        </li>
 
+                    <?php } ?>
                 <!-- <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link <?php if ($this->router->fetch_class() == 'dividend') {
                                                         echo 'c-active';
