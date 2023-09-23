@@ -94,10 +94,10 @@
                                                     <td><a href="<?= base_url() ?>report/edit/<?= $row['report_id'] ?>"><?= $row['customer_package_id'] ?></a></td>
                                                     <td>
                                                         <form id="image-upload-form" action="<?= base_url()?>report/add_image" method="POST" enctype="multipart/form-data">
-                                                            <div class="input-container">
+                                                            <div>
                                                                 <input type="hidden" name="report_id" value="<?= $row['report_id']?>">
                                                                 <input type="file" name="files[]"style="width: 100%" id="image-input" accept="image/*" multiple>
-                                                                <input type="submit" style="width:80%;" class="" value="Upload Images">
+                                                                <input type="submit" style="width:100%;" class="" value="Upload Images">
                                                             </div>
                                                             <!-- <input type="hidden" name="report_id" value="<?= $row['report_id']?>">
                                                             <input type="file" name="files[]" class="form-control" id="image-input" accept="image/*" multiple>

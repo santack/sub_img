@@ -69,7 +69,7 @@ class Base_Model extends CI_Model
         $this->db->select("*");
         $this->db->from($this->table_name);
         $this->db->where($where);
-
+        $this->db->where("deleted", 0);
         $query = $this->db->get();
 
         return $query->result_array();
