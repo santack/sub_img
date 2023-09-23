@@ -105,9 +105,9 @@
                                                         </form>
                                                         <?php foreach ($row['images'] as $ikey => $image){?>
                                                             <div style="padding-top: 10px;">
-                                                                <a href="" class="img" id="<?= $image['image_true'] ?>">Image <?= $ikey +1 ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <!-- <img id="img-<?= $image["report_image_id"]?>" data-id="<?= $image["report_image_id"]?>" class="img" style="width: 200px; height: 100px; margin-top:50px;"src="<?= $image['image_true'] ?>" alt=""> -->
-                                                                <button class="btn btn-danger delete-button" data-id="<?= $image["report_image_id"] ?>" data-path="report_image"><i class="fa fa-trash"></i> Delete</button>
+                                                                <!-- <a href="" class="img" id="<?= $image['image_true'] ?>">Image <?= $ikey +1 ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                                                                <img id="img-<?= $image["report_image_id"]?>" data-id="<?= $image["report_image_id"]?>" class="img" style="width: 100px; height: 50px; margin-top:5px;"src="<?= $image['image_true'] ?>" alt="">
+                                                                <button style=" margin-top:5px;" class="btn btn-danger delete-button" data-id="<?= $image["report_image_id"] ?>" data-path="report_image"><i class="fa fa-trash"></i> Delete</button>
                                                             </div>
                                                            
                                                             <br>
@@ -150,7 +150,7 @@ $(document).ready(function() {
     // });
     $(".img").click(function (e) {
         e.preventDefault();
-        var imgSrc = $(this).attr("id");
+        var imgSrc = $(this).attr("src");
         $("#modalImage").attr("src", imgSrc);
         $("#imageModal").css("display", "block");
     });
