@@ -33,23 +33,10 @@
                         <form method="GET" id="filter_form">
                             <div class="row">
                                 <div class="form-group col-3">
-                                    <label for="" class="c-label">Date From</label>
-                                    <br>
-                                    <input type="date" class="form-control filter" name="dateFrom" value="<?= $dateFrom ?>">
-                                </div>
-                                <div class="form-group col-3">
-                                    <label for="" class="c-label">Date To</label>
-                                    <br>
-                                    <input type="date" class="form-control filter" name="dateTo" value="<?= $dateTo ?>">
-                                </div>
-
-                                <div class="form-group col-3">
                                     <label for="">Status</label>
                                     <select class="form-control filter" name="status">
-                                        <option class="filter" value="0" <?php if (isset($status) && $status == 0) echo "selected" ?>>Pending</option>
-                                        <option class="filter" value="1" <?php if (isset($status) && $status == 1) echo "selected" ?>>Approve</option>
-                                        <option class="filter" value="2" <?php if (isset($status) && $status == 2) echo "selected" ?>>Reject</option>
-                                        <option class="filter" value="3" <?php if (isset($status) && $status == 3) echo "selected" ?>>Renew</option>
+                                        <option class="filter" value="1" <?php if (isset($status) && $status == 1) echo "selected" ?>>Active</option>
+                                        <option class="filter" value="0" <?php if (isset($status) && $status == 0) echo "selected" ?>>Inactive</option>
                                     </select>
                                 </div>
                                 
@@ -66,7 +53,8 @@
                                                 <th class="sorting">Customer Name</th>
                                                 <th class="sorting">Package</th>
                                                 <th class="sorting">Start Date</th>
-                                                <th class="sorting">New/ Outlet</th>
+                                                <th class="sorting">End Date</th>
+                                                <th class="sorting">Expired Date</th>
                                                 <th class="sorting">Status</th>
                                                 <th class="sorting">Action</th>
                                             </tr>
@@ -81,14 +69,26 @@
                                                     <td><?= $row['dealer_name'] ?></td>
                                                     <td><?= $row['company_name'] ?></td>
                                                     <td><?= $row['package_name'] ?></td>
-                                                    <td><?= date('Y-m-d', strtotime(str_replace('-','/', $row['created_date'])))?></td>
-                                                    <td><?= isset($row['type']) && $row['type'] == 1 ? "Outlet" : "New" ?></td>
-                                                    <td><?= $row['status'] ?></td>
-                                                    <?php if ($row['user_status'] == 0 || $row['user_status'] == 3) {?>
-                                                        <td><a href="<?= base_url() ?>approval/approve/<?= $row['user_id'] ?>">Approve</a> | <a href="<?= base_url() ?>approval/reject/<?= $row['user_id'] ?>">Reject</a></td>
-                                                    <?php } else {?>
-                                                        <td>-</td>
-                                                    <?php } ?>
+                                                    <td>
+                                                        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>approved_customer/edit/<?=$row["user_id"]?>">
+                                                            <input type="date" id="created_date" name="created_date" value="<?= date('Y-m-d', strtotime(str_replace('-','/', $row['created_date'])))?>">
+                                                            <input type="submit">
+                                                        </form>
+                                                    </td>
+                                                    <td>
+                                                        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>approved_customer/edit/<?=$row["user_id"]?>">
+                                                            <input type="date" id="end_date" name="end_date" value="<?= $row['end_date']?>">
+                                                            <input type="submit">
+                                                        </form>
+                                                    </td>
+                                                    <td>
+                                                        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>approved_customer/edit/<?=$row["user_id"]?>">
+                                                            <input type="date" id="expired_date" name="expired_date" value="<?= $row['expired_date']?>">
+                                                            <input type="submit">
+                                                        </form>
+                                                    </td>
+                                                    <td><?= $row['is_active'] == 1 ? 'Active' : 'Inactive' ?></td>
+                                                    <td><a href="<?= base_url() ?>approved_customer/renew/<?= $row['user_id'] ?>">Renew</a></td>
                                                     <!-- <td><a href="<?= base_url() ?>customer/edit/<?= $row['user_id'] ?>"><?= isset($row['is_active']) && $row['is_active'] == 1 ? "Active" : "Inactive" ?></a></td> -->
 
                                                     <!-- <td><button class="btn btn-danger delete-button" data-id="<?= $row["user_id"] ?>" data-path="admin"><i class="fa fa-trash"></i> Delete</button></td> -->

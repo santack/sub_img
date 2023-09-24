@@ -148,13 +148,20 @@ class Customer extends Base_Controller
             $input = $this->input->post();
 
             $error = false;
+
+            if ($this->session->userdata("login_data")['role_id'] == 2) {
+                $dealer_id = $this->session->userdata('login_id');
+            } else {
+                $dealer_id = $input['dealer_id'];
+            }
+
             if (!$error) {
                 $where = array(
                     'user_id' => $user_id
                 );
 
                 $data = array(
-                    'dealer_id'          => $this->session->userdata('login_id'),
+                    'dealer_id'          => $dealer_id,
                     'company_name'          => $input['company_name'],
                     'company_ssm_no'          => $input['company_ssm_no'],
                     'contact'       => $input['contact'],

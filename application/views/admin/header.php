@@ -133,6 +133,15 @@
                                 Approval
                             </a>
                         </li>
+
+                        <li class="c-sidebar-nav-item">
+                            <a class="c-sidebar-nav-link <?php if ($this->router->fetch_class() == 'approved_customer') {
+                                                                echo 'c-active';
+                                                            } ?>" href="<?= site_url('approved_customer'); ?>">
+                                <i class="feather icon-activity c-sidebar-nav-icon"></i>
+                                Approved Customer
+                            </a>
+                        </li>
                     <?php } ?>
                     <li class="c-sidebar-nav-item">
                         <a class="c-sidebar-nav-link <?php if ($this->router->fetch_class() == 'report') {
