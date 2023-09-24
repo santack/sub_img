@@ -69,7 +69,43 @@
                 </div>
                 <div class="card-body">
                     <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                        
+                        <form method="GET" id="filter_form">
+                            <div class="row">
+                                <div class="form-group col-3">
+                                    <label for="" class="c-label">Date From</label>
+                                    <br>
+                                    <input type="date" class="form-control filter" name="dateFrom" value="<?= $dateFrom ?>">
+                                </div>
+                                <div class="form-group col-3">
+                                    <label for="" class="c-label">Date To</label>
+                                    <br>
+                                    <input type="date" class="form-control filter" name="dateTo" value="<?= $dateTo ?>">
+                                </div>
+
+                                <div class="form-group col-3">
+                                    <label for="">Status</label>
+                                    <select class="form-control filter" name="status">
+                                        <option class="filter" value="0" <?php if (isset($status) && $status == 0) echo "selected" ?>>Not Uploaded</option>
+                                        <option class="filter" value="1" <?php if (isset($status) && $status == 1) echo "selected" ?>>Uploaded</option>
+                                    </select>
+                                </div>
+                                <?php if ($this->session->userdata("login_data")['role_id'] == 1) {?>
+                                    <div class="form-group">
+                                        <label for="">Dealer</label>
+                                        <select class="form-control filter" name="dealer_id">
+                                            <?php
+                                            foreach ($dealer as $row) {
+                                            ?>
+                                           <option class="filter" value="<?= $row['admin_id'] ?>" <?php if (isset($dealer_id) && $row['admin_id'] == $dealer_id) echo "selected" ?>><?= $row['name'] ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                <?php } ?>
+                                
+                            </div>
+                        </form>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
@@ -89,17 +125,17 @@
                                             foreach ($report as $row) {
                                             ?>
                                                 <tr>
-                                                    <td><a href="<?= base_url() ?>report/edit/<?= $row['report_id'] ?>"><?= $i ?></a></td>
-                                                    <td><a href="<?= base_url() ?>report/edit/<?= $row['report_id'] ?>"><?= $row['customer_name'] ?></a></td>
-                                                    <td><a href="<?= base_url() ?>report/edit/<?= $row['report_id'] ?>"><?= $row['customer_package_id'] ?></a></td>
+                                                    <td><?= $i ?></td>
+                                                    <td><?= $row['company_name'] ?></td>
+                                                    <td><?= $row['package_name'] ?></td>
                                                     <td>
                                                         <form id="image-upload-form" action="<?= base_url()?>report/add_image" method="POST" enctype="multipart/form-data">
                                                             <div>
-                                                                <input type="hidden" name="report_id" value="<?= $row['report_id']?>">
+                                                                <input type="hidden" name="user_id" value="<?= $row['user_id']?>">
                                                                 <input type="file" name="files[]"style="width: 100%" id="image-input" accept="image/*" multiple>
                                                                 <input type="submit" style="width:100%;" class="" value="Upload Images">
                                                             </div>
-                                                            <!-- <input type="hidden" name="report_id" value="<?= $row['report_id']?>">
+                                                            <!-- <input type="hidden" name="user_id" value="<?= $row['user_id']?>">
                                                             <input type="file" name="files[]" class="form-control" id="image-input" accept="image/*" multiple>
                                                             <input type="submit" class="btn" style="text-align:right" value="Upload Images"> -->
                                                         </form>
@@ -148,6 +184,9 @@ $(document).ready(function() {
     //         width: '1000px'
     //     });
     // });
+    $(document).on("change", ".filter", function(e) {
+        $('#filter_form').submit();
+    });
     $(".img").click(function (e) {
         e.preventDefault();
         var imgSrc = $(this).attr("src");

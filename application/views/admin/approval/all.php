@@ -30,7 +30,7 @@
                 </div>
                 <div class="card-body">
                     <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                    <form method="GET" id="filter_form">
+                        <form method="GET" id="filter_form">
                             <div class="row">
                                 <div class="form-group col-3">
                                     <label for="" class="c-label">Date From</label>

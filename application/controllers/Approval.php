@@ -12,6 +12,10 @@ class Approval extends Base_Controller
         $this->page_data = array();
 
         $this->load->model("User_model");
+
+        if ($this->session->userdata("login_data")['role_id'] == 2) {
+            redirect("customer");
+        }
     }
 
     function index()
