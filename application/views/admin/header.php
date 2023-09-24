@@ -142,8 +142,8 @@
                             Report
                         </a>
                     </li>
-                <li class="c-sidebar-nav-title">SETTINGS</li>
                     <?php if ($this->session->userdata("login_data")['role_id'] == 1) { ?>
+                        <li class="c-sidebar-nav-title">SETTINGS</li>
                         <li class="c-sidebar-nav-item">
                             <a class="c-sidebar-nav-link <?php if ($this->router->fetch_class() == 'package') {
                                                                 echo 'c-active';
