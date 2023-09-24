@@ -59,13 +59,6 @@ class Report extends Base_Controller
         $this->load->view("admin/footer");
     }
 
-    function dd($data){
-        echo '<pre>';
-        var_dump($data);
-        echo '</pre>';
-        die();
-    }
-
     function add_image()
     {
         if($_POST) {

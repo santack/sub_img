@@ -22,11 +22,36 @@ class Dealer extends Base_Controller
 
     function index()
     {
+        $dateFrom = ($_GET && isset($_GET['dateFrom']) && $_GET['dateFrom']) ? $_GET['dateFrom'] : date('Y-m-d');
+        $dateTo = ($_GET && isset($_GET['dateTo']) && $_GET['dateTo']) ? $_GET['dateTo'] : date('Y-m-d');
+        $type = ($_GET && isset($_GET['type'])) ? $_GET['type'] : 1;
+
+        if($this->session->userdata('dealer_dateFrom')) {
+            $dateFrom = ($_GET && isset($_GET['dateFrom']) && $_GET['dateFrom']) ? $_GET['dateFrom'] : $this->session->userdata('dealer_dateFrom');
+        }
+
+        if($this->session->userdata('dealer_dateTo')) {
+            $dateTo = ($_GET && isset($_GET['dateTo']) && $_GET['dateTo']) ? $_GET['dateTo'] : $this->session->userdata('dealer_dateTo');
+        }
+
+        if($this->session->userdata('dealer_type')) {
+            $type = ($_GET && isset($_GET['type'])) ? $_GET['type'] : $this->session->userdata('dealer_type');
+        }
+
+        $this->session->set_userdata("dealer_dateFrom", $dateFrom);
+        $this->session->set_userdata("dealer_dateTo", $dateTo);
+        $this->session->set_userdata("dealer_type", $type);
+
         $where = array(
-            'admin.role_id' => 2
+            'admin.role_id' => 2,
+            'DATE(admin.created_date) >=' => $dateFrom,
+            'DATE(admin.created_date) <=' => $dateTo,
+            'admin.is_active' => $type
         );
         $this->page_data["admin"] = $this->Admin_model->get_where_with_role($where);
-        
+        $this->page_data["dateFrom"] = $dateFrom;
+        $this->page_data["dateTo"] = $dateTo;
+        $this->page_data["type"] = $type;
         $this->load->view("admin/header", $this->page_data);
         $this->load->view("admin/dealer/all");
         $this->load->view("admin/footer");

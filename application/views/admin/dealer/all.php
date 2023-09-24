@@ -17,7 +17,7 @@
         <div class="fade-in">
             <div class="card">
                 <div class="card-header">
-                    Admin Details
+                    Dealer Details
                     <div class="card-header-actions">
                         <a class="card-header-action">
                             <i class="cil-arrow-circle-top c-icon minimize-card"></i>
@@ -31,7 +31,29 @@
                 </div>
                 <div class="card-body">
                     <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    <form method="GET" id="filter_form">
+                            <div class="row">
+                                <div class="form-group col-3">
+                                    <label for="" class="c-label">Date From</label>
+                                    <br>
+                                    <input type="date" class="form-control filter" name="dateFrom" value="<?= $dateFrom ?>">
+                                </div>
+                                <div class="form-group col-3">
+                                    <label for="" class="c-label">Date To</label>
+                                    <br>
+                                    <input type="date" class="form-control filter" name="dateTo" value="<?= $dateTo ?>">
+                                </div>
 
+                                <div class="form-group col-3">
+                                    <label for="">Status</label>
+                                    <select class="form-control filter" name="type">
+                                        <option class="filter" value="1" <?php if (isset($type) && $type == 1) echo "selected" ?>>Active</option>
+                                        <option class="filter" value="0" <?php if (isset($type) && $type == 0) echo "selected" ?>>Inactive</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </form>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
@@ -78,3 +100,9 @@
                     </div>
                 </div>
             </div>
+
+            <script>
+                $(document).on("change", ".filter", function(e) {
+                    $('#filter_form').submit();
+                });
+            </script>
