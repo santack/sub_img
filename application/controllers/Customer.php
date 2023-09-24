@@ -48,7 +48,7 @@ class Customer extends Base_Controller
         $customer = $this->db->query("
                 SELECT user.*, package.name as package_name
         FROM user
-        LEFT JOIN package ON user.package_id = package.package_id AND package.deleted = 0
+        LEFT JOIN package ON user.package_id = package.package_id
         WHERE DATE(user.created_date) >= '$dateFrom' AND DATE(user.created_date) <= '$dateTo' AND user.is_active = $type $where
         ")->result_array();
 

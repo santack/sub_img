@@ -122,7 +122,17 @@
                         Orders
                     </a>
                 </li> -->
-                
+                <?php if ($this->session->userdata("login_data")['role_id'] == 1) { ?>
+                    <li class="c-sidebar-nav-title">APPROVAL</li>
+                        <li class="c-sidebar-nav-item">
+                            <a class="c-sidebar-nav-link <?php if ($this->router->fetch_class() == 'approval') {
+                                                                echo 'c-active';
+                                                            } ?>" href="<?= site_url('approval'); ?>">
+                                <i class="feather icon-activity c-sidebar-nav-icon"></i>
+                                Approval
+                            </a>
+                        </li>
+                <?php } ?>
                 <li class="c-sidebar-nav-title">SETTINGS</li>
                     <?php if ($this->session->userdata("login_data")['role_id'] == 1) { ?>
                         <li class="c-sidebar-nav-item">
