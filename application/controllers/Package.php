@@ -14,7 +14,7 @@ class Package extends Base_Controller
         $this->load->model("Role_model");
 
         if ($this->session->userdata("login_data")['role_id'] == 2) {
-            redirect("dashboard/agent_index");
+            redirect("customer");
         }
     }
 
