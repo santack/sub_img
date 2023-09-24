@@ -38,6 +38,18 @@
                                 <input type="text" class="form-control" name="name" placeholder="Name" required>
                             </div>
                             <div class="form-group">
+                                <label for="">Code ID</label>
+                                <input type="text" class="form-control" name="code_id" placeholder="Code ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Contact</label>
+                                <input type="number" class="form-control" name="contact" placeholder="Contact" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Area</label>
+                                <input type="text" class="form-control" name="area" placeholder="Area" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Password</label>
                                 <input type="password" class="form-control" name="password" placeholder="Password" required>
                             </div>

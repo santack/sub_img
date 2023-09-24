@@ -40,6 +40,21 @@
                                 value="<?= $admin["name"]?>" required>
                         </div>
                         <div class="form-group">
+                            <label for="">Code ID</label>
+                            <input type="text" class="form-control" name="code_id" placeholder="Code ID"
+                                value="<?= $admin["code_id"]?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Contact</label>
+                            <input type="number" class="form-control" name="contact" placeholder="Contact"
+                                value="<?= $admin["contact"]?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Area</label>
+                            <input type="text" class="form-control" name="area" placeholder="Area"
+                                value="<?= $admin["area"]?>" required>
+                        </div>
+                        <div class="form-group">
                             <label for="">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Password">
                             <small class="smallalert"> * LEAVE BLANK TO REMIAN OLD PASSWORD **</small>

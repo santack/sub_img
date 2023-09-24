@@ -41,6 +41,9 @@
                                                 <th class="sorting_asc">No.</th>
                                                 <th class="sorting">Username</th>
                                                 <th class="sorting">Name</th>
+                                                <th class="sorting">Code ID</th>
+                                                <th class="sorting">Contact</th>
+                                                <th class="sorting">Area</th>
                                                 <th class="sorting">Status</th>
                                                 <!-- <th class="sorting"></th> -->
                                             </tr>
@@ -54,6 +57,9 @@
                                                     <td><a href="<?= base_url() ?>dealer/edit/<?= $row['admin_id'] ?>"><?= $i ?></a></td>
                                                     <td><a href="<?= base_url() ?>dealer/edit/<?= $row['admin_id'] ?>"><?= $row['username'] ?></a></td>
                                                     <td><a href="<?= base_url() ?>dealer/edit/<?= $row['admin_id'] ?>"><?= $row['name'] ?></a></td>
+                                                    <td><a href="<?= base_url() ?>dealer/edit/<?= $row['admin_id'] ?>"><?= $row['code_id'] ?></a></td>
+                                                    <td><a href="<?= base_url() ?>dealer/edit/<?= $row['admin_id'] ?>"><?= $row['contact'] ?></a></td>
+                                                    <td><a href="<?= base_url() ?>dealer/edit/<?= $row['admin_id'] ?>"><?= $row['area'] ?></a></td>
                                                     <td><a href="<?= base_url() ?>dealer/edit/<?= $row['admin_id'] ?>"><?= isset($row['is_active']) && $row['is_active'] == 1 ? "Active" : "Inactive" ?></a></td>
 
                                                     <!-- <td><button class="btn btn-danger delete-button" data-id="<?= $row["admin_id"] ?>" data-path="admin"><i class="fa fa-trash"></i> Delete</button></td> -->

@@ -91,7 +91,7 @@
                                                                 echo 'c-active';
                                                             } ?>" href="<?= base_url() ?>dealer">
                                 <i class="feather icon-user c-sidebar-nav-icon"></i>
-                                Dealer
+                                User Setup
                             </a>
                         </li>
 

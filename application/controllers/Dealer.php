@@ -59,7 +59,10 @@ class Dealer extends Base_Controller
                 $data = array(
                     'username' => $input['username'],
                     'role_id' => 2,
+                    'code_id' => $input['code_id'],
                     'name' => $input['name'],
+                    'contact' => $input['contact'],
+                    'area' => $input['area'],
                     'password' => $hash['password'],
                     'salt' => $hash['salt'],
                     'created_by' => $this->session->userdata('login_id')
@@ -127,6 +130,9 @@ class Dealer extends Base_Controller
                 $data = array(
                     'username' => $input['username'],
                     'name' => $input['name'],
+                    'code_id' => $input['code_id'],
+                    'contact' => $input['contact'],
+                    'area' => $input['area'],
                     "modified_date" => date("Y-m-d H:i:s"),
                     'modified_by' => $this->session->userdata('login_id')
                 );

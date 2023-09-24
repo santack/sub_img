@@ -50,6 +50,18 @@
                                                                 <td><?= $admin["name"]?></td>
                                                             </tr>
                                                             <tr>
+                                                                <th scope="row">Code ID</th>
+                                                                <td><?= $admin["code_id"]?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Contact</th>
+                                                                <td><?= $admin["contact"]?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Area</th>
+                                                                <td><?= $admin["area"]?></td>
+                                                            </tr>
+                                                            <tr>
                                                                 <th scope="row">Status</th>
                                                                 <td><?= isset($admin['is_active']) && $admin['is_active'] == 1 ? "Active" : "Inactive"?></td>
                                                             </tr>
