@@ -30,6 +30,13 @@
                     <form role="form" method="POST" enctype="multipart/form-data"
                         action="<?= base_url()?>customer/edit/<?=$customer["user_id"]?>">
                         <div class="form-group">
+                            <label for="">Type</label>
+                            <select class="form-control" name="type">
+                                <option class="filter" value="0" <?php if (isset($customer["type"]) && 0 == $customer["type"]) echo "selected" ?>>New</option>
+                                <option class="filter" value="1" <?php if (isset($customer["type"]) && 1 == $customer["type"]) echo "selected" ?>>Outlet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="">Company Name</label>
                             <input type="text" class="form-control" name="company_name" placeholder="Company Name" value="<?= $customer["company_name"]?>" required>
                         </div>
@@ -58,7 +65,7 @@
                         <?php if ($this->session->userdata("login_data")['role_id'] == 1) { ?>
                             <div class="form-group">
                                 <label for="">Dealer</label>
-                                <select class="form-control filter" name="dealer_id">
+                                <select class="form-control" name="dealer_id">
                                     <?php
                                     foreach ($dealer as $row) {
                                     ?>
@@ -72,7 +79,7 @@
 
                         <div class="form-group">
                             <label for="">Package</label>
-                            <select class="form-control filter" name="package_id">
+                            <select class="form-control" name="package_id">
                                 <?php
                                 foreach ($package as $row) {
                                 ?>
@@ -83,13 +90,6 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="">Type</label>
-                            <select class="form-control filter" name="type">
-                                <option class="filter" value="0" <?php if (isset($customer["type"]) && 0 == $customer["type"]) echo "selected" ?>>New</option>
-                                <option class="filter" value="1" <?php if (isset($customer["type"]) && 1 == $customer["type"]) echo "selected" ?>>Outlet</option>
-                            </select>
-                        </div>
                         <?php if (isset($error)) { ?>
                         <p style="color: #fe5d70; font-style:italic;"><?= $error; ?> </p> <?php if (isset($ad_id) && $row['admin_id'] == $ad_id) echo "selected" ?>
                         <?php } ?>

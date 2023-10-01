@@ -58,7 +58,7 @@
                         <?php if ($this->session->userdata("login_data")['role_id'] == 1) { ?>
                             <div class="form-group">
                                 <label for="">Dealer</label>
-                                <select class="form-control filter" name="dealer_id">
+                                <select class="form-control" name="dealer_id">
                                     <?php
                                     foreach ($dealer as $row) {
                                     ?>
@@ -72,7 +72,7 @@
 
                         <div class="form-group">
                             <label for="">Package</label>
-                            <select class="form-control filter" name="package_id">
+                            <select class="form-control" name="package_id">
                                 <?php
                                 foreach ($package as $row) {
                                 ?>
@@ -85,7 +85,7 @@
 
                         <div class="form-group">
                             <label for="">Type</label>
-                            <select class="form-control filter" name="type">
+                            <select class="form-control" name="type">
                                 <option class="filter" value="0" <?php if (isset($customer["type"]) && 0 == $customer["type"]) echo "selected" ?>>New</option>
                                 <option class="filter" value="1" <?php if (isset($customer["type"]) && 1 == $customer["type"]) echo "selected" ?>>Outlet</option>
                             </select>

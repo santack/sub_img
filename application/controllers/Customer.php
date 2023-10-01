@@ -99,6 +99,9 @@ class Customer extends Base_Controller
                 redirect("customer", "refresh");
             }
         }
+
+        $cust_sql = "SELECT * FROM user WHERE is_active = 1 AND deleted = 0";
+        $this->page_data['user'] = $this->db->query($cust_sql)->result_array();
         $this->page_data['package'] = $this->getPackage();
         $this->page_data['dealer'] = $this->getDealer();
         $this->load->view("admin/header", $this->page_data);
@@ -201,5 +204,22 @@ class Customer extends Base_Controller
         $this->User_model->soft_delete($user_id);
 
         redirect("customer", "refresh");
+    }
+
+    function get_customer_detail()
+    {
+        if($_POST) {
+            $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : 0;
+            $user = array();
+            if($user_id != 0) {
+                $sql = "SELECT * FROM user WHERE user_id = $user_id";
+                $user = $this->db->query($sql)->result_array();
+
+                if($user) {
+                    $user = $user[0];
+                }
+            }
+            echo json_encode($user);
+        }
     }
 }
